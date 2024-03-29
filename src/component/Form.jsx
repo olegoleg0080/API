@@ -1,25 +1,23 @@
-import { Formik } from 'formik';
-import React, { Component } from 'react'
-import { FormBlock, SearchBtn, SearchField, SearchForm } from './Form.styled';
+import { Formik } from "formik";
+import { FormBlock, SearchBtn, SearchField, SearchForm } from "./Form.styled";
 
-export default class Form extends Component {
-  render() {
+export const Form = ({ onSubm }) => {
     return (
         <FormBlock>
             <h1>Contact Us</h1>
             <Formik
-              initialValues={{ name: "", email: "" }}
-              onSubmit={async (values) => {
-                await new Promise((resolve) => setTimeout(resolve, 500));
-                alert(JSON.stringify(values, null, 2));
-              }}
+                initialValues={{ name: "", email: "" }}
+                onSubmit={(values, { resetForm }) => {
+                    // console.log(this.props);
+                    onSubm(values.query.toLowerCase().replaceAll(" ", ""));
+                    resetForm();
+                }}
             >
-              <SearchForm>
-                <SearchField name="name" type="text" />
-                <SearchBtn type="submit">Submit</SearchBtn>
-              </SearchForm>
+                <SearchForm>
+                    <SearchField name="query" type="text" />
+                    <SearchBtn type="submit">Submit</SearchBtn>
+                </SearchForm>
             </Formik>
         </FormBlock>
-    )
-  }
-}
+    );
+};

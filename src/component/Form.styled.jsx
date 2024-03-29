@@ -28,3 +28,22 @@ export const SearchBtn = styled.button`
     height: 40px;
     background-color: #00fb0d;
 `;
+
+export const List = styled.ul`
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+gap: 30px;
+padding: 50px 0 ;
+  
+`;
+
+export const Container = styled.div`
+  max-width: 1220px;
+  margin: 0 auto;
+`;
+
+export const Item = styled.li`
+  width: calc((100% - 4*30px) / 5)
+`;
